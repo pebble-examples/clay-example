@@ -8,3 +8,5 @@ dist.zip
 
 # Ignore installed node modules
 node_modules/
+
+jshintrc
