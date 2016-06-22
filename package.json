@@ -1,0 +1,37 @@
+{
+    "author": "orviwan@gmail.com",
+    "dependencies": {
+        "pebble-clay": "^1.0.1"
+    },
+    "keywords": [],
+    "name": "clay",
+    "pebble": {
+        "capabilities": [
+            "configurable"
+        ],
+        "displayName": "clay",
+        "enableMultiJS": true,
+        "messageKeys": [
+            "BackgroundColor",
+            "ForegroundColor",
+            "SecondTick",
+            "Animations"
+        ],
+        "projectType": "native",
+        "resources": {
+            "media": []
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt",
+            "chalk",
+            "diorite"
+        ],
+        "uuid": "169d8c6a-af73-4ce8-aa06-7514941b9d5e",
+        "watchapp": {
+            "watchface": false
+        }
+    },
+    "version": "1.0.0"
+}
