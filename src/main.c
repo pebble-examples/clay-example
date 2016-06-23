@@ -34,22 +34,20 @@ static void prv_save_settings() {
 static void prv_update_display() {
   // Background color
   window_set_background_color(s_window, settings.BackgroundColor);
-  text_layer_set_background_color(s_label_secondtick, settings.BackgroundColor);
-  text_layer_set_background_color(s_label_animations, settings.BackgroundColor);
 
   // Foreground Color
   text_layer_set_text_color(s_label_secondtick, settings.ForegroundColor);
   text_layer_set_text_color(s_label_animations, settings.ForegroundColor);
 
   // Seconds
-  if(settings.SecondTick) {
+  if (settings.SecondTick) {
     text_layer_set_text(s_label_secondtick, "seconds: enabled");
   } else {
     text_layer_set_text(s_label_secondtick, "seconds: disabled");
   }
 
   // Animations
-  if(settings.Animations) {
+  if (settings.Animations) {
     text_layer_set_text(s_label_animations, "animations: enabled");
   } else {
     text_layer_set_text(s_label_animations, "animations: disabled");
@@ -60,25 +58,25 @@ static void prv_update_display() {
 static void prv_inbox_received_handler(DictionaryIterator *iter, void *context) {
   // Background Color
   Tuple *bg_color_t = dict_find(iter, MESSAGE_KEY_BackgroundColor);
-  if(bg_color_t) {
+  if (bg_color_t) {
     settings.BackgroundColor = GColorFromHEX(bg_color_t->value->int32);
   }
 
   // Foreground Color
   Tuple *fg_color_t = dict_find(iter, MESSAGE_KEY_ForegroundColor);
-  if(fg_color_t) {
+  if (fg_color_t) {
     settings.ForegroundColor = GColorFromHEX(fg_color_t->value->int32);
   }
 
   // Second Tick
   Tuple *second_tick_t = dict_find(iter, MESSAGE_KEY_SecondTick);
-  if(second_tick_t) {
+  if (second_tick_t) {
     settings.SecondTick = second_tick_t->value->int32 == 1;
   }
 
   // Animations
   Tuple *animations_t = dict_find(iter, MESSAGE_KEY_Animations);
-  if(animations_t) {
+  if (animations_t) {
     settings.Animations = animations_t->value->int32 == 1;
   }
 
@@ -93,10 +91,12 @@ static void prv_window_load(Window *window) {
 
   s_label_secondtick = text_layer_create(GRect(0, bounds.size.h/4, bounds.size.w, 30));
   text_layer_set_text_alignment(s_label_secondtick, GTextAlignmentCenter);
+  text_layer_set_background_color(s_label_secondtick, GColorClear);
   layer_add_child(window_layer, text_layer_get_layer(s_label_secondtick));
 
   s_label_animations = text_layer_create(GRect(0, bounds.size.h/2, bounds.size.w, 30));
   text_layer_set_text_alignment(s_label_animations, GTextAlignmentCenter);
+  text_layer_set_background_color(s_label_animations, GColorClear);
   layer_add_child(window_layer, text_layer_get_layer(s_label_animations));
 
   prv_update_display();
@@ -125,7 +125,9 @@ static void prv_init(void) {
 }
 
 static void prv_deinit(void) {
-
+  if (s_window) {
+    window_destroy(s_window);
+  }
 }
 
 int main(void) {

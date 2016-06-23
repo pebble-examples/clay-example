@@ -1,15 +1,15 @@
 {
-    "author": "orviwan@gmail.com",
+    "author": "Pebble Technology",
     "dependencies": {
         "pebble-clay": "^1.0.1"
     },
     "keywords": [],
-    "name": "clay",
+    "name": "clay-example",
     "pebble": {
         "capabilities": [
             "configurable"
         ],
-        "displayName": "clay",
+        "displayName": "clay-example",
         "enableMultiJS": true,
         "messageKeys": [
             "BackgroundColor",
